@@ -29,8 +29,8 @@
     </dependencies>
     <scm>
         <url>https://ludovicianul@github.com/ludovicianul/pl4j.git</url>
-        <connection>scm:git:git@github.com:ludovicianul/pl4j.git</connection>
-        <developerConnection>scm:git:git@github.com:ludovicianul/pl4j.git</developerConnection>
+        <connection>scm:git:https://ludovicianul@github.com/ludovicianul/pl4j.git</connection>
+        <developerConnection>scm:git:https://ludovicianul@github.com/ludovicianul/pl4j.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>
