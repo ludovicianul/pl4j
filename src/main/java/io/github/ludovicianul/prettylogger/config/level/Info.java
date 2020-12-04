@@ -6,7 +6,7 @@ import org.slf4j.event.Level;
 
 class Info extends PrettyConfig {
     private Info() {
-        super("info", "ℹ", Ansi.Color.BLUE, Level.INFO);
+        super("info", "\u24D8", Ansi.Color.BLUE, Level.INFO);
     }
 
     static Info defaultConfig() {
