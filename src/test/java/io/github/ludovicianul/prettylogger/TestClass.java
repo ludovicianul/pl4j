@@ -1,8 +1,11 @@
 package io.github.ludovicianul.prettylogger;
 
+import org.junit.jupiter.api.Test;
+
 public class TestClass {
 
-    public static void main(String... args) {
+    @Test
+    public void testDisplay() {
         PrettyLogger prettyLogger = PrettyLoggerFactory.getLogger(TestClass.class);
 
         prettyLogger.success("received response from: {}", "http://google.com");
