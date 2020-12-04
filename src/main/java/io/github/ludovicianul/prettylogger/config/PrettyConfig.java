@@ -24,7 +24,8 @@ public abstract class PrettyConfig {
     }
 
     private void setMarkerText() {
-        markerText = Ansi.ansi().fg(color).bold().a(symbol + " " + label).reset().toString();
+        String text = String.format("%-2s %s", symbol, label);
+        markerText = Ansi.ansi().fg(color).bold().a(text).reset().toString();
     }
 
     public PrettyConfig label(String lbl) {
