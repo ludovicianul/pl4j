@@ -6,7 +6,7 @@ import org.slf4j.event.Level;
 
 class Stop extends PrettyConfig {
     private Stop() {
-        super("stop", "◼", Ansi.Color.RED, Level.INFO);
+        super("stop", "\u25A0", Ansi.Color.RED, Level.INFO);
     }
 
     static Stop defaultConfig() {

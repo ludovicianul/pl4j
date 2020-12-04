@@ -6,7 +6,7 @@ import org.slf4j.event.Level;
 
 class Pause extends PrettyConfig {
     private Pause() {
-        super("pause", "◼", Ansi.Color.YELLOW, Level.INFO);
+        super("pause", "\u25A0", Ansi.Color.YELLOW, Level.INFO);
     }
 
     static Pause defaultConfig() {
