@@ -27,4 +27,12 @@
             <version>${jansi.version}</version>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/ludovicianul/pl4j</url>
+        </repository>
+    </distributionManagement>
 </project>
