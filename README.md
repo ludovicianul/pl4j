@@ -54,7 +54,7 @@ Add it as a Maven dependency in your `pom.xml` file:
 
 ## Log Pattern
 
-This is a sample logback configuration file that was used to display the above top console output:
+This is a sample logback configuration file that was used to display the above console output:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -63,7 +63,7 @@ This is a sample logback configuration file that was used to display the above t
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <withJansi>true</withJansi>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%-22marker %msg%n</pattern>
+            <pattern>%-27marker %msg%n</pattern>
         </encoder>
     </appender>
     <root level="trace">
@@ -81,11 +81,13 @@ PL4J uses the following mapping between the SLF4J log levels and the markers:
 | SLF4J Log Level  |  PL4J Marker|
 |---|---|
 | `debug`  |  `debug` |
-| `info`  | `awaiting, complete, info, note, pause, pending, santa, star, start, stop, success`  |
+| `info`  | `awaiting, complete, info, note, pause, pending, santa, star, start, stop, success, skipping`  |
 |  `warn` | `warning`  |
 |  `error` |  `error, fatal` |
 
 ## Markers Configuration
+
+### Individual configuration
 
 You can override the default Markers as follows:
 
@@ -103,6 +105,51 @@ public class TestClass {
     }
 }
 ```
+
+You can override both the `symbol` and the `label`. The following flags can be configured (all `booleans`):
+
+- `bold`
+- `underline`
+- `showLabel`
+- `showSymbol`
+
+The flags can be configured both individually, for each marker:
+
+```java
+import io.github.ludovicianul.prettylogger.config.PrettyMarker;
+import io.github.ludovicianul.prettylogger.PrettyLogger;
+import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
+
+public class TestClass {
+
+    public static void main(String... args) {
+        PrettyLogger prettyLogger = PrettyLoggerFactory.getLogger(TestClass.class);
+        PrettyMarker config = ConfigFactory.error().bold(false).underline(true).showLabel(true).showSymbol(true);
+        prettyLogger.log(config, "this is an error");//note that we use log() instead of error()
+    }
+}
+```
+
+As well as globally as shown in [Global Configuration](#global-configuration)
+
+### Global configuration
+
+You can configure the above flags globally though a file called `pl4j.properties` which must be present in the
+classpath. The following properties can be used to change the flag values (all `booleans`:
+
+- `pl4j.show-labels`
+- `pl4j.show-symbols`
+- `pl4j.bold`
+- `pl4j.underline`
+
+### Default values
+
+If no global or individual configuration is supplied the default values are as follows:
+
+- `bold = true`
+- `underline = false`
+- `showLabel = true`
+- `showSymbol = true`
 
 # Credits
 
