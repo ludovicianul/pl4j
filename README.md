@@ -106,7 +106,7 @@ public class TestClass {
 }
 ```
 
-You can override both the `symbol` and the `label`. The following flags can be configured (all `booleans`):
+You can override both the `symbol` and the `label`. The following flags can also be configured (all `booleans`):
 
 - `bold`
 - `underline`
@@ -134,7 +134,7 @@ As well as globally as shown in [Global Configuration](#global-configuration)
 
 ### Global configuration
 
-You can configure the above flags globally though a file called `pl4j.properties` which must be present in the
+You can configure the above flags globally through a file called `pl4j.properties` which must be present in the
 classpath. The following properties can be used to change the flag values (all `booleans`:
 
 - `pl4j.show-labels`
