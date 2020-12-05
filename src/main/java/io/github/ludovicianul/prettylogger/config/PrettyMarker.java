@@ -14,6 +14,10 @@ public abstract class PrettyConfig {
     private Ansi.Color color;
     private String markerText;
     private Level level;
+    private boolean showLabel;
+    private boolean showSymbol;
+    private boolean bold;
+    private boolean underlined;
 
     public PrettyConfig(String label, String symbol, Ansi.Color color, Level level) {
         this.label = label;
@@ -42,6 +46,12 @@ public abstract class PrettyConfig {
 
     public PrettyConfig color(Ansi.Color clr) {
         this.color = clr;
+        setMarkerText();
+        return this;
+    }
+
+    public PrettyConfig showLabel(boolean show) {
+        this.showLabel = show;
         setMarkerText();
         return this;
     }
