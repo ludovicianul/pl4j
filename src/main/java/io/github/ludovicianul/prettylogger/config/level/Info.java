@@ -6,7 +6,7 @@ import org.slf4j.event.Level;
 
 class Info extends PrettyMarker {
     private Info() {
-        super("info", "\u24D8", Ansi.Color.BLUE, Level.INFO);
+        super("info", "\u2139", Ansi.Color.BLUE, Level.INFO);
     }
 
     static Info defaultConfig() {
