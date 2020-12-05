@@ -90,7 +90,7 @@ PL4J uses the following mapping between the SLF4J log levels and the markers:
 You can override the default Markers as follows:
 
 ```java
-import io.github.ludovicianul.prettylogger.config.PrettyConfig;
+import io.github.ludovicianul.prettylogger.config.PrettyMarker;
 import io.github.ludovicianul.prettylogger.PrettyLogger;
 import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
 
@@ -98,7 +98,7 @@ public class TestClass {
 
     public static void main(String... args) {
         PrettyLogger prettyLogger = PrettyLoggerFactory.getLogger(TestClass.class);
-        PrettyConfig config = ConfigFactory.error().label("err");// we change the label to `err` instead of `error`
+        PrettyMarker config = ConfigFactory.error().label("err");// we change the label to `err` instead of `error`
         prettyLogger.log(config, "this is an error");//note that we use log() instead of error()
     }
 }

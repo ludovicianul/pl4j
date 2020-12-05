@@ -22,5 +22,7 @@ public class TestClass {
         prettyLogger.start("process started");
         prettyLogger.stop("process paused");
         prettyLogger.warning("unable to normalize string");
+        prettyLogger.skip("skip string");
+
     }
 }

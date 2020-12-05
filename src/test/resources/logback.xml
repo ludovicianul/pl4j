@@ -4,7 +4,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <withJansi>true</withJansi>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%-22marker %msg%n</pattern>
+            <pattern>%-30marker %msg%n</pattern>
         </encoder>
     </appender>
     <root level="trace">

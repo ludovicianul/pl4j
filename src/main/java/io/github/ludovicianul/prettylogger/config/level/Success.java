@@ -1,11 +1,11 @@
 package io.github.ludovicianul.prettylogger.config.level;
 
-import io.github.ludovicianul.prettylogger.config.PrettyConfig;
+import io.github.ludovicianul.prettylogger.config.PrettyMarker;
 import org.fusesource.jansi.Ansi;
 import org.slf4j.event.Level;
 
 
-class Success extends PrettyConfig {
+class Success extends PrettyMarker {
     private Success() {
         super("success", "✔", Ansi.Color.GREEN, Level.INFO);
     }

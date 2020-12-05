@@ -14,6 +14,7 @@ public enum LogType {
     STAR,
     START,
     STOP,
+    SKIP,
     SUCCESS,
-    WARN;
+    WARN
 }

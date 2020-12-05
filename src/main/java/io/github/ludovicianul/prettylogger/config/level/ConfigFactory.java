@@ -1,6 +1,6 @@
 package io.github.ludovicianul.prettylogger.config.level;
 
-import io.github.ludovicianul.prettylogger.config.PrettyConfig;
+import io.github.ludovicianul.prettylogger.config.PrettyMarker;
 
 public class ConfigFactory {
 
@@ -8,64 +8,68 @@ public class ConfigFactory {
         //ntd
     }
 
-    public static PrettyConfig success() {
+    public static PrettyMarker success() {
         return Success.defaultConfig();
     }
 
-    public static PrettyConfig awaiting() {
+    public static PrettyMarker awaiting() {
         return Awaiting.defaultConfig();
     }
 
-    public static PrettyConfig complete() {
+    public static PrettyMarker complete() {
         return Complete.defaultConfig();
     }
 
-    public static PrettyConfig debug() {
+    public static PrettyMarker debug() {
         return Debug.defaultConfig();
     }
 
-    public static PrettyConfig error() {
+    public static PrettyMarker error() {
         return Error.defaultConfig();
     }
 
-    public static PrettyConfig fatal() {
+    public static PrettyMarker fatal() {
         return Fatal.defaultConfig();
     }
 
-    public static PrettyConfig info() {
+    public static PrettyMarker info() {
         return Info.defaultConfig();
     }
 
-    public static PrettyConfig note() {
+    public static PrettyMarker note() {
         return Note.defaultConfig();
     }
 
-    public static PrettyConfig pause() {
+    public static PrettyMarker pause() {
         return Pause.defaultConfig();
     }
 
-    public static PrettyConfig pending() {
+    public static PrettyMarker pending() {
         return Pending.defaultConfig();
     }
 
-    public static PrettyConfig santa() {
+    public static PrettyMarker santa() {
         return Santa.defaultConfig();
     }
 
-    public static PrettyConfig star() {
+    public static PrettyMarker star() {
         return Star.defaultConfig();
     }
 
-    public static PrettyConfig start() {
+    public static PrettyMarker start() {
         return Start.defaultConfig();
     }
 
-    public static PrettyConfig stop() {
+    public static PrettyMarker stop() {
         return Stop.defaultConfig();
     }
 
-    public static PrettyConfig warning() {
+    public static PrettyMarker warning() {
         return Warning.defaultConfig();
+    }
+
+    public static PrettyMarker skip() {
+        return Skip.defaultConfig();
     }
 
 
