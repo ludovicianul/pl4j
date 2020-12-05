@@ -8,18 +8,18 @@ import org.slf4j.event.Level;
 /**
  * Please note that this class is mutable by design. You have the option to start with a base configuration provided by the pre-defined classes
  */
-public abstract class PrettyConfig {
+public abstract class PrettyMarker {
     private String label;
     private String symbol;
     private Ansi.Color color;
     private String markerText;
     private Level level;
-    private boolean showLabel;
-    private boolean showSymbol;
-    private boolean bold;
-    private boolean underlined;
+    private boolean showLabel = PrettyLoggerProperties.INSTANCE.isShowLabels();
+    private boolean showSymbol = PrettyLoggerProperties.INSTANCE.isShowSymbols();
+    private boolean bold = PrettyLoggerProperties.INSTANCE.isBold();
+    private boolean underline = PrettyLoggerProperties.INSTANCE.isUnderline();
 
-    public PrettyConfig(String label, String symbol, Ansi.Color color, Level level) {
+    public PrettyMarker(String label, String symbol, Ansi.Color color, Level level) {
         this.label = label;
         this.symbol = symbol;
         this.color = color;
@@ -27,36 +27,70 @@ public abstract class PrettyConfig {
         setMarkerText();
     }
 
-    private void setMarkerText() {
-        String text = String.format("%-2s %s", symbol, label);
-        markerText = Ansi.ansi().fg(color).bold().a(text).reset().toString();
+    private String getSymbol() {
+        return showSymbol ? getBolded(symbol) : "";
     }
 
-    public PrettyConfig label(String lbl) {
+    private String getLabel() {
+        return showLabel ? getBolded(getUnderlined(label)) : "";
+    }
+
+    private String getBolded(String text) {
+        return bold ? Ansi.ansi().bold().a(text).toString() : text;
+    }
+
+    private String getUnderlined(String text) {
+        return underline ? Ansi.ansi().a(Ansi.Attribute.UNDERLINE).a(text).toString() : text;
+    }
+
+    private void setMarkerText() {
+        String text = String.format("%-2s %s", this.getSymbol(), getLabel());
+        markerText = Ansi.ansi().fg(color).a(text).reset().toString();
+    }
+
+    public PrettyMarker label(String lbl) {
         this.label = lbl;
         setMarkerText();
         return this;
     }
 
-    public PrettyConfig symbol(String smb) {
+    public PrettyMarker symbol(String smb) {
         this.symbol = smb;
         setMarkerText();
         return this;
     }
 
-    public PrettyConfig color(Ansi.Color clr) {
+    public PrettyMarker color(Ansi.Color clr) {
         this.color = clr;
         setMarkerText();
         return this;
     }
 
-    public PrettyConfig showLabel(boolean show) {
+    public PrettyMarker showLabel(boolean show) {
         this.showLabel = show;
         setMarkerText();
         return this;
     }
 
-    public PrettyConfig level(Level level) {
+    public PrettyMarker showSymbol(boolean show) {
+        this.showSymbol = show;
+        setMarkerText();
+        return this;
+    }
+
+    public PrettyMarker bold(boolean bold) {
+        this.bold = bold;
+        setMarkerText();
+        return this;
+    }
+
+    public PrettyMarker underline(boolean underline) {
+        this.underline = underline;
+        setMarkerText();
+        return this;
+    }
+
+    public PrettyMarker level(Level level) {
         this.level = level;
         return this;
     }
