@@ -1,8 +1,8 @@
 package io.github.ludovicianul.prettylogger;
 
 import io.github.ludovicianul.prettylogger.config.MarkerType;
-import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
+import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import org.slf4j.Logger;
 
 import java.util.EnumMap;
@@ -117,6 +117,10 @@ public class PrettyLogger {
         this.logInternal(loggerConfig, message, arguments);
     }
 
+    public void warning(String message, Object... arguments) {
+        this.warn(message, arguments);
+    }
+
     public void success(String message, Object... arguments) {
         PrettyMarker loggerConfig = config.get(MarkerType.SUCCESS);
         this.logInternal(loggerConfig, message, arguments);
@@ -125,6 +129,10 @@ public class PrettyLogger {
     public void skip(String message, Object... arguments) {
         PrettyMarker loggerConfig = config.get(MarkerType.SKIP);
         this.logInternal(loggerConfig, message, arguments);
+    }
+
+    public void skipping(String message, Object... arguments) {
+        this.skip(message, arguments);
     }
 
     public void pending(String message, Object... arguments) {
