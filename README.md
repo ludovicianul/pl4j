@@ -92,7 +92,7 @@ PL4J uses the following mapping between the SLF4J log levels and the markers:
 You can override the default Markers as follows:
 
 ```java
-import io.github.ludovicianul.prettylogger.config.PrettyMarker;
+import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import io.github.ludovicianul.prettylogger.PrettyLogger;
 import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
 
@@ -116,7 +116,7 @@ You can override both the `symbol` and the `label`. The following flags can also
 The flags can be configured both individually, for each marker:
 
 ```java
-import io.github.ludovicianul.prettylogger.config.PrettyMarker;
+import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import io.github.ludovicianul.prettylogger.PrettyLogger;
 import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
 

@@ -1,7 +1,7 @@
 package io.github.ludovicianul.prettylogger.config;
 
-public enum LogType {
-    AWAIT,
+public enum MarkerType {
+    AWAITING,
     COMPLETE,
     DEBUG,
     ERROR,
@@ -16,5 +16,5 @@ public enum LogType {
     STOP,
     SKIP,
     SUCCESS,
-    WARN
+    WARNING
 }

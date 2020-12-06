@@ -1,7 +1,7 @@
 package io.github.ludovicianul.prettylogger;
 
-import io.github.ludovicianul.prettylogger.config.LogType;
-import io.github.ludovicianul.prettylogger.config.PrettyMarker;
+import io.github.ludovicianul.prettylogger.config.MarkerType;
+import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
 import org.slf4j.Logger;
 
@@ -15,31 +15,31 @@ import java.util.Map;
 public class PrettyLogger {
 
     private final Logger slf4jLogger;
-    private final EnumMap<LogType, PrettyMarker> config;
+    private final EnumMap<MarkerType, PrettyMarker> config;
 
     private PrettyLogger(Logger slf4jLogger) {
         this.slf4jLogger = slf4jLogger;
-        config = new EnumMap<>(LogType.class);
-        config.put(LogType.AWAIT, ConfigFactory.awaiting());
-        config.put(LogType.COMPLETE, ConfigFactory.complete());
-        config.put(LogType.DEBUG, ConfigFactory.debug());
-        config.put(LogType.ERROR, ConfigFactory.error());
-        config.put(LogType.FATAL, ConfigFactory.fatal());
-        config.put(LogType.INFO, ConfigFactory.info());
-        config.put(LogType.NOTE, ConfigFactory.note());
-        config.put(LogType.PAUSE, ConfigFactory.pause());
-        config.put(LogType.PENDING, ConfigFactory.pending());
-        config.put(LogType.SANTA, ConfigFactory.santa());
-        config.put(LogType.STAR, ConfigFactory.star());
-        config.put(LogType.START, ConfigFactory.start());
-        config.put(LogType.STOP, ConfigFactory.stop());
-        config.put(LogType.SUCCESS, ConfigFactory.success());
-        config.put(LogType.WARN, ConfigFactory.warning());
-        config.put(LogType.SKIP, ConfigFactory.skip());
+        config = new EnumMap<>(MarkerType.class);
+        config.put(MarkerType.AWAITING, ConfigFactory.awaiting());
+        config.put(MarkerType.COMPLETE, ConfigFactory.complete());
+        config.put(MarkerType.DEBUG, ConfigFactory.debug());
+        config.put(MarkerType.ERROR, ConfigFactory.error());
+        config.put(MarkerType.FATAL, ConfigFactory.fatal());
+        config.put(MarkerType.INFO, ConfigFactory.info());
+        config.put(MarkerType.NOTE, ConfigFactory.note());
+        config.put(MarkerType.PAUSE, ConfigFactory.pause());
+        config.put(MarkerType.PENDING, ConfigFactory.pending());
+        config.put(MarkerType.SANTA, ConfigFactory.santa());
+        config.put(MarkerType.STAR, ConfigFactory.star());
+        config.put(MarkerType.START, ConfigFactory.start());
+        config.put(MarkerType.STOP, ConfigFactory.stop());
+        config.put(MarkerType.SUCCESS, ConfigFactory.success());
+        config.put(MarkerType.WARNING, ConfigFactory.warning());
+        config.put(MarkerType.SKIP, ConfigFactory.skip());
 
     }
 
-    private PrettyLogger(Logger slf4jLogger, Map<LogType, PrettyMarker> configMap) {
+    private PrettyLogger(Logger slf4jLogger, Map<MarkerType, PrettyMarker> configMap) {
         this(slf4jLogger);
         config.putAll(configMap);
     }
@@ -48,87 +48,87 @@ public class PrettyLogger {
         return new PrettyLogger(slf4jLogger);
     }
 
-    public static PrettyLogger fromSlf4j(Logger slf4jLogger, Map<LogType, PrettyMarker> configMap) {
+    public static PrettyLogger fromSlf4j(Logger slf4jLogger, Map<MarkerType, PrettyMarker> configMap) {
         return new PrettyLogger(slf4jLogger, configMap);
     }
 
     public void awaiting(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.AWAIT);
+        PrettyMarker loggerConfig = config.get(MarkerType.AWAITING);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void complete(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.COMPLETE);
+        PrettyMarker loggerConfig = config.get(MarkerType.COMPLETE);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void debug(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.DEBUG);
+        PrettyMarker loggerConfig = config.get(MarkerType.DEBUG);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void error(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.ERROR);
+        PrettyMarker loggerConfig = config.get(MarkerType.ERROR);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void fatal(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.FATAL);
+        PrettyMarker loggerConfig = config.get(MarkerType.FATAL);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void info(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.INFO);
+        PrettyMarker loggerConfig = config.get(MarkerType.INFO);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void note(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.NOTE);
+        PrettyMarker loggerConfig = config.get(MarkerType.NOTE);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void pause(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.PAUSE);
+        PrettyMarker loggerConfig = config.get(MarkerType.PAUSE);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void santa(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.SANTA);
+        PrettyMarker loggerConfig = config.get(MarkerType.SANTA);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void star(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.STAR);
+        PrettyMarker loggerConfig = config.get(MarkerType.STAR);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void start(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.START);
+        PrettyMarker loggerConfig = config.get(MarkerType.START);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void stop(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.STOP);
+        PrettyMarker loggerConfig = config.get(MarkerType.STOP);
         this.logInternal(loggerConfig, message, arguments);
     }
 
-    public void warning(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.WARN);
+    public void warn(String message, Object... arguments) {
+        PrettyMarker loggerConfig = config.get(MarkerType.WARNING);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void success(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.SUCCESS);
+        PrettyMarker loggerConfig = config.get(MarkerType.SUCCESS);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void skip(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.SKIP);
+        PrettyMarker loggerConfig = config.get(MarkerType.SKIP);
         this.logInternal(loggerConfig, message, arguments);
     }
 
     public void pending(String message, Object... arguments) {
-        PrettyMarker loggerConfig = config.get(LogType.PENDING);
+        PrettyMarker loggerConfig = config.get(MarkerType.PENDING);
         this.logInternal(loggerConfig, message, arguments);
     }
 

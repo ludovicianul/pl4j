@@ -21,8 +21,8 @@ public class TestClass {
         prettyLogger.star("run CATS next time");
         prettyLogger.start("process started");
         prettyLogger.stop("process paused");
-        prettyLogger.warning("unable to normalize string");
+        prettyLogger.warn("unable to normalize string");
         prettyLogger.skip("skip string");
-
+        prettyLogger.pending("connect to url");
     }
 }

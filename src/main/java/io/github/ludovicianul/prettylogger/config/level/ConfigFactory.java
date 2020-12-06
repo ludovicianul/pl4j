@@ -1,7 +1,5 @@
 package io.github.ludovicianul.prettylogger.config.level;
 
-import io.github.ludovicianul.prettylogger.config.PrettyMarker;
-
 public class ConfigFactory {
 
     private ConfigFactory() {

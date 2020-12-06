@@ -1,5 +1,6 @@
-package io.github.ludovicianul.prettylogger.config;
+package io.github.ludovicianul.prettylogger.config.level;
 
+import io.github.ludovicianul.prettylogger.config.MarkerType;
 import org.fusesource.jansi.Ansi;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
@@ -19,10 +20,10 @@ public abstract class PrettyMarker {
     private boolean bold = PrettyLoggerProperties.INSTANCE.isBold();
     private boolean underline = PrettyLoggerProperties.INSTANCE.isUnderline();
 
-    public PrettyMarker(String label, String symbol, Ansi.Color color, Level level) {
-        this.label = label;
-        this.symbol = symbol;
-        this.color = color;
+    public PrettyMarker(MarkerType markerType, Level level) {
+        this.label = PrettyLoggerProperties.INSTANCE.getLabel(markerType);
+        this.symbol = PrettyLoggerProperties.INSTANCE.getSymbol(markerType);
+        this.color = this.getAnsiColor(markerType);
         this.level = level;
         setMarkerText();
     }
@@ -41,6 +42,14 @@ public abstract class PrettyMarker {
 
     private String getUnderlined(String text) {
         return underline ? Ansi.ansi().a(Ansi.Attribute.UNDERLINE).a(text).toString() : text;
+    }
+
+    private Ansi.Color getAnsiColor(MarkerType markerType) {
+        try {
+            return Ansi.Color.valueOf(PrettyLoggerProperties.INSTANCE.getColor(markerType).toUpperCase());
+        } catch (Exception e) {
+            return Ansi.Color.DEFAULT;
+        }
     }
 
     private void setMarkerText() {

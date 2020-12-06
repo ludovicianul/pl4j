@@ -1,12 +1,11 @@
 package io.github.ludovicianul.prettylogger.config.level;
 
-import io.github.ludovicianul.prettylogger.config.PrettyMarker;
-import org.fusesource.jansi.Ansi;
+import io.github.ludovicianul.prettylogger.config.MarkerType;
 import org.slf4j.event.Level;
 
 class Stop extends PrettyMarker {
     private Stop() {
-        super("stop", "\u25A0", Ansi.Color.RED, Level.INFO);
+        super(MarkerType.STOP, Level.INFO);
     }
 
     static Stop defaultConfig() {
