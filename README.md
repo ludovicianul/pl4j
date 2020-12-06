@@ -1,6 +1,9 @@
 <h1 align="center">
   Pretty Logger for Java (PL4J)
 </h1>
+<h3 align="center">
+  (Now with themes support!)
+</h3>
 <div align="center">
   <img alt="Loggers" src="images/loggers.png" width="90%">
   <img alt="Loggers" src="images/loggers-gestures.png" width="90%">
@@ -13,6 +16,22 @@ using [ANSI formatting](https://en.wikipedia.org/wiki/ANSI_escape_code)
 through [jansi](http://fusesource.github.io/jansi/). PL4J is built around the concept
 of [Markers](http://www.slf4j.org/faq.html#marker_interface). This means that you can only
 use [logback](http://logback.qos.ch/) as an implementation, being the only SLF4J binding that supports Markers.
+
+Table of Contents
+=================
+
+* [Description](#description)
+* [Usage](#usage)
+* [Configuration](#configuration)
+    * [Log Pattern](#log-pattern)
+    * [Log Level and Markers](#log-level-and-markers)
+    * [Markers Configuration](#markers-configuration)
+        * [Individual configuration](#individual-configuration)
+        * [Global configuration](#global-configuration)
+        * [Default values](#default-values)
+    * [Themes](#themes)
+* [Credits](#credits)
+
 
 # Usage
 
