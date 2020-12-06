@@ -3,6 +3,7 @@
 </h1>
 <div align="center">
   <img alt="Loggers" src="images/loggers.png" width="90%">
+  <img alt="Loggers" src="images/loggers-gestures.png" width="90%">
 </div>
 
 # Description
@@ -141,6 +142,7 @@ classpath. The following properties can be used to change the flag values (all `
 - `pl4j.show-symbols`
 - `pl4j.bold`
 - `pl4j.underline`
+- `pl4j.theme`
 
 ### Default values
 
@@ -150,6 +152,24 @@ If no global or individual configuration is supplied the default values are as f
 - `underline = false`
 - `showLabel = true`
 - `showSymbol = true`
+- `theme = default`
+
+## Themes
+
+PL4J supports themes, meaning that you can create your own combination of `symbol`, `label` and `color` for
+each `MarkerType`. In order to do this you must create a file named `pl4j-themename.theme` following the example of
+the [default theme](https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-default.theme), place it
+into the classpath and configure the theme name in `pl4j.properties` as follows:
+
+```properties
+pl4j.theme=themename
+```
+
+If PL4J doesn't find the `pl4j-themename.theme` inside the classpath it will default to the `default` theme. This is the
+list of out-of-the-box supported themes:
+
+-default: [https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-default.theme](https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-default.theme)
+-gestures: [https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-gestures.theme](https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-gestures.theme)
 
 # Credits
 
