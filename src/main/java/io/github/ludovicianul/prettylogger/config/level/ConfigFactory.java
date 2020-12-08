@@ -70,5 +70,4 @@ public class ConfigFactory {
         return Skip.defaultConfig();
     }
 
-
 }

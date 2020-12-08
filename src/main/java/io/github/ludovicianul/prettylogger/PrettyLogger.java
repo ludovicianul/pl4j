@@ -57,8 +57,18 @@ public class PrettyLogger {
         this.logInternal(loggerConfig, message, arguments);
     }
 
+    public void awaiting(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.awaiting().fromConfig(config);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
     public void complete(String message, Object... arguments) {
         PrettyMarker loggerConfig = config.get(MarkerType.COMPLETE);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
+    public void complete(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.complete().fromConfig(config);
         this.logInternal(loggerConfig, message, arguments);
     }
 
@@ -67,8 +77,18 @@ public class PrettyLogger {
         this.logInternal(loggerConfig, message, arguments);
     }
 
+    public void debug(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.debug().fromConfig(config);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
     public void error(String message, Object... arguments) {
         PrettyMarker loggerConfig = config.get(MarkerType.ERROR);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
+    public void error(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.error().fromConfig(config);
         this.logInternal(loggerConfig, message, arguments);
     }
 
@@ -77,8 +97,18 @@ public class PrettyLogger {
         this.logInternal(loggerConfig, message, arguments);
     }
 
+    public void fatal(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.fatal().fromConfig(config);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
     public void info(String message, Object... arguments) {
         PrettyMarker loggerConfig = config.get(MarkerType.INFO);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
+    public void info(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.info().fromConfig(config);
         this.logInternal(loggerConfig, message, arguments);
     }
 
@@ -87,8 +117,18 @@ public class PrettyLogger {
         this.logInternal(loggerConfig, message, arguments);
     }
 
+    public void note(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.note().fromConfig(config);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
     public void pause(String message, Object... arguments) {
         PrettyMarker loggerConfig = config.get(MarkerType.PAUSE);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
+    public void pause(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.pause().fromConfig(config);
         this.logInternal(loggerConfig, message, arguments);
     }
 
@@ -97,8 +137,18 @@ public class PrettyLogger {
         this.logInternal(loggerConfig, message, arguments);
     }
 
+    public void santa(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.santa().fromConfig(config);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
     public void star(String message, Object... arguments) {
         PrettyMarker loggerConfig = config.get(MarkerType.STAR);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
+    public void star(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.star().fromConfig(config);
         this.logInternal(loggerConfig, message, arguments);
     }
 
@@ -107,8 +157,18 @@ public class PrettyLogger {
         this.logInternal(loggerConfig, message, arguments);
     }
 
+    public void start(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.start().fromConfig(config);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
     public void stop(String message, Object... arguments) {
         PrettyMarker loggerConfig = config.get(MarkerType.STOP);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
+    public void stop(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.stop().fromConfig(config);
         this.logInternal(loggerConfig, message, arguments);
     }
 
@@ -117,12 +177,26 @@ public class PrettyLogger {
         this.logInternal(loggerConfig, message, arguments);
     }
 
+    public void warn(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.warning().fromConfig(config);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
     public void warning(String message, Object... arguments) {
         this.warn(message, arguments);
     }
 
+    public void warning(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        this.warn(config, message, arguments);
+    }
+
     public void success(String message, Object... arguments) {
         PrettyMarker loggerConfig = config.get(MarkerType.SUCCESS);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
+    public void success(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.success().fromConfig(config);
         this.logInternal(loggerConfig, message, arguments);
     }
 
@@ -131,12 +205,26 @@ public class PrettyLogger {
         this.logInternal(loggerConfig, message, arguments);
     }
 
+    public void skip(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.skip().fromConfig(config);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
     public void skipping(String message, Object... arguments) {
         this.skip(message, arguments);
     }
 
+    public void skipping(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        this.skip(config, message, arguments);
+    }
+
     public void pending(String message, Object... arguments) {
         PrettyMarker loggerConfig = config.get(MarkerType.PENDING);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
+    public void pending(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.pending().fromConfig(config);
         this.logInternal(loggerConfig, message, arguments);
     }
 

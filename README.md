@@ -32,7 +32,6 @@ Table of Contents
     * [Themes](#themes)
 * [Credits](#credits)
 
-
 # Usage
 
 Add it as a Maven dependency in your `pom.xml` file:
@@ -116,12 +115,19 @@ import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import io.github.ludovicianul.prettylogger.PrettyLogger;
 import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
 
+import java.util.HashMap;
+
 public class TestClass {
 
     public static void main(String... args) {
         PrettyLogger prettyLogger = PrettyLoggerFactory.getLogger(TestClass.class);
+        //option 1
         PrettyMarker config = ConfigFactory.error().label("err");// we change the label to `err` instead of `error`
         prettyLogger.log(config, "this is an error");//note that we use log() instead of error()
+        //option 2
+        Map<PrettyMarker.ConfigKey, Object> configMap = new HashMap<>();
+        configMap.put(PrettyMarker.ConfigKey.UNDERLINE, true);
+        prettyLogger.skip(configMap, "skip processing for id 1");
     }
 }
 ```
