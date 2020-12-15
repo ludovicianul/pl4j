@@ -7,6 +7,7 @@
 <div align="center">
   <img alt="Loggers" src="images/loggers.png" width="90%">
   <img alt="Loggers" src="images/loggers-gestures.png" width="90%">
+  <img alt="Loggers" src="images/loggers-emojis.png" width="90%">
 </div>
 
 # Description
