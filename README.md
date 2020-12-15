@@ -30,6 +30,7 @@ Table of Contents
         * [Global configuration](#global-configuration)
         * [Default values](#default-values)
     * [Themes](#themes)
+    * [Timers](#timers)
 * [Credits](#credits)
 
 # Usage
@@ -195,6 +196,27 @@ list of out-of-the-box supported themes:
 
 -default: [https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-default.theme](https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-default.theme)
 -gestures: [https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-gestures.theme](https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-gestures.theme)
+-emojis: [https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-emojis.theme](https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-emojis.theme)
+
+## Timers
+You can also automatically measure the duration of specific tasks using `timers`. This is an example on how to use `timers`:
+
+
+```java
+import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
+import io.github.ludovicianul.prettylogger.PrettyLogger;
+import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
+
+public class TestClass {
+
+    public static void main(String... args) {
+        PrettyLogger prettyLogger = PrettyLoggerFactory.getLogger(TestClass.class);
+        prettyLogger.time("job1");
+        // stuff happening
+        prettyLogger.timeEnd("job1");
+    }
+}
+```
 
 # Credits
 

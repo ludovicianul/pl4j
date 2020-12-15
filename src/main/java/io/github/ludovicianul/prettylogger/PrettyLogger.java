@@ -4,6 +4,7 @@ import io.github.ludovicianul.prettylogger.config.MarkerType;
 import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
 import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import org.slf4j.Logger;
+import org.slf4j.MDC;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -14,6 +15,8 @@ import java.util.Map;
  */
 public class PrettyLogger {
 
+    private static final String INIT_TIMER = "Timer starting...";
+    private static final String END_TIMER = "Timer run for: {}ms";
     private final Logger slf4jLogger;
     private final EnumMap<MarkerType, PrettyMarker> config;
 
@@ -230,6 +233,24 @@ public class PrettyLogger {
 
     public void log(PrettyMarker loggerConfig, String message, Object... arguments) {
         this.logInternal(loggerConfig, message, arguments);
+    }
+
+    public void time(String timerKey) {
+        PrettyMarker timerMarker = ConfigFactory.start().label(timerKey);
+        MDC.put(timerKey, String.valueOf(System.currentTimeMillis()));
+        this.logInternal(timerMarker, INIT_TIMER);
+    }
+
+    public void timeEnd(String timerKey) {
+        PrettyMarker timerMarker = ConfigFactory.stop().label(timerKey);
+        final long endTime = System.currentTimeMillis();
+        long startTime;
+        try {
+            startTime = Long.parseLong(MDC.get(timerKey));
+        } catch (Exception e) {
+            startTime = endTime;
+        }
+        this.logInternal(timerMarker, END_TIMER, (endTime - startTime) / 1000);
     }
 
     private void logInternal(PrettyMarker config, String message, Object... arguments) {

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 public class TestClass {
 
     @Test
-    public void testDisplay() {
+    public void testDisplay() throws Exception {
         PrettyLogger prettyLogger = PrettyLoggerFactory.getLogger(TestClass.class);
 
         prettyLogger.success("received response from: {}", "http://google.com");
@@ -24,5 +24,9 @@ public class TestClass {
         prettyLogger.warn("unable to normalize string");
         prettyLogger.skip("skip string");
         prettyLogger.pending("connect to url");
+
+        prettyLogger.time("job1");
+        Thread.sleep(2000);
+        prettyLogger.timeEnd("job1");
     }
 }
