@@ -197,7 +197,7 @@ list of out-of-the-box supported themes:
 
 - default: [https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-default.theme](https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-default.theme)
 - gestures: [https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-gestures.theme](https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-gestures.theme)
-- ![img.png](img.png)emojis: [https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-emojis.theme](https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-emojis.theme)
+- emojis: [https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-emojis.theme](https://github.com/ludovicianul/pl4j/blob/master/src/main/resources/pl4j-emojis.theme)
 
 ## Timers
 You can also automatically measure the duration of specific tasks using `timers`. This is an example on how to use `timers`:
