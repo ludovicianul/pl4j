@@ -32,6 +32,7 @@ Table of Contents
         * [Default values](#default-values)
     * [Themes](#themes)
     * [Timers](#timers)
+* [Projects using PL4J](#projects-using-pl4j)
 * [Credits](#credits)
 
 # Usage
@@ -218,6 +219,8 @@ public class TestClass {
     }
 }
 ```
+# Projects using PL4J
+* [CATS](https://github.com/Endava/cats)
 
 # Credits
 
