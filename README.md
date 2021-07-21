@@ -15,8 +15,8 @@
 `Pretty Logger for Java` is a [slf4j](http://www.slf4j.org/) decorator that enables pretty printing on the console
 using [ANSI formatting](https://en.wikipedia.org/wiki/ANSI_escape_code)
 through [jansi](http://fusesource.github.io/jansi/). PL4J is built around the concept
-of [Markers](http://www.slf4j.org/faq.html#marker_interface). This means that you can only
-use [logback](http://logback.qos.ch/) as an implementation, being the only SLF4J binding that supports Markers.
+of [Markers](http://www.slf4j.org/faq.html#marker_interface). This means that you must use an 
+implementation that supports Markers such as [logback](http://logback.qos.ch/) or [lof4j2](https://logging.apache.org/log4j/2.x/).
 
 Table of Contents
 =================

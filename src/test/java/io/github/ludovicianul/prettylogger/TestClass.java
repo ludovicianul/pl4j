@@ -13,6 +13,7 @@ public class TestClass {
         prettyLogger.complete("finish processing");
         prettyLogger.debug("value is: {}", "190");
         prettyLogger.error("not able to connect to: {}", "http://google.com");
+        prettyLogger.fav("this is my favorite library");
         prettyLogger.fatal("something went terribly wrong");
         prettyLogger.info("url to connect to: {}", "http://google.com");
         prettyLogger.note("remember to run CATS");

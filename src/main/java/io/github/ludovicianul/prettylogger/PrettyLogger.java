@@ -27,6 +27,7 @@ public class PrettyLogger {
         config.put(MarkerType.COMPLETE, ConfigFactory.complete());
         config.put(MarkerType.DEBUG, ConfigFactory.debug());
         config.put(MarkerType.ERROR, ConfigFactory.error());
+        config.put(MarkerType.FAV, ConfigFactory.fav());
         config.put(MarkerType.FATAL, ConfigFactory.fatal());
         config.put(MarkerType.INFO, ConfigFactory.info());
         config.put(MarkerType.NOTE, ConfigFactory.note());
@@ -231,6 +232,16 @@ public class PrettyLogger {
         this.logInternal(loggerConfig, message, arguments);
     }
 
+    public void fav(String message, Object... arguments) {
+        PrettyMarker loggerConfig = config.get(MarkerType.FAV);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
+    public void fav(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+        PrettyMarker loggerConfig = ConfigFactory.fav().fromConfig(config);
+        this.logInternal(loggerConfig, message, arguments);
+    }
+
     public void log(PrettyMarker loggerConfig, String message, Object... arguments) {
         this.logInternal(loggerConfig, message, arguments);
     }
@@ -250,7 +261,7 @@ public class PrettyLogger {
         } catch (Exception e) {
             startTime = endTime;
         }
-        this.logInternal(timerMarker, END_TIMER, (endTime - startTime) / 1000);
+        this.logInternal(timerMarker, END_TIMER, (endTime - startTime));
     }
 
     private void logInternal(PrettyMarker config, String message, Object... arguments) {

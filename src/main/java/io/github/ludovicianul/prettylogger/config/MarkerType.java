@@ -5,6 +5,7 @@ public enum MarkerType {
     COMPLETE,
     DEBUG,
     ERROR,
+    FAV,
     FATAL,
     INFO,
     NOTE,

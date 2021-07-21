@@ -30,6 +30,8 @@ public class ConfigFactory {
         return Fatal.defaultConfig();
     }
 
+    public static PrettyMarker fav() {return Fav.defaultConfig();}
+
     public static PrettyMarker info() {
         return Info.defaultConfig();
     }

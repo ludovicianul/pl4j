@@ -1,6 +1,7 @@
 package io.github.ludovicianul.prettylogger.config.level;
 
 import io.github.ludovicianul.prettylogger.config.MarkerType;
+import java.util.Locale;
 import org.fusesource.jansi.Ansi;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
@@ -26,6 +27,7 @@ public abstract class PrettyMarker {
         configuration.put(ConfigKey.SHOW_SYMBOL, PrettyLoggerProperties.INSTANCE.isShowSymbols());
         configuration.put(ConfigKey.BOLD, PrettyLoggerProperties.INSTANCE.isBold());
         configuration.put(ConfigKey.UNDERLINE, PrettyLoggerProperties.INSTANCE.isUnderline());
+        configuration.put(ConfigKey.UPPERCASE_LABEL, PrettyLoggerProperties.INSTANCE.isUppercaseLabel());
         setMarkerText();
     }
 
@@ -51,7 +53,8 @@ public abstract class PrettyMarker {
     }
 
     private String getLabel() {
-        return isTrue(ConfigKey.SHOW_LABEL) ? getBolded(getUnderlined(this.getProperty(ConfigKey.LABEL))) : "";
+        String initialText = isTrue(ConfigKey.SHOW_LABEL) ? this.getBolded(this.getUnderlined(this.getProperty(ConfigKey.LABEL))) : "";
+        return isTrue(ConfigKey.UPPERCASE_LABEL) ? initialText.toUpperCase(Locale.ROOT) : initialText;
     }
 
     private String getBolded(String text) {
@@ -117,6 +120,12 @@ public abstract class PrettyMarker {
         return this;
     }
 
+    public PrettyMarker uppercaseLabel(boolean uppercaseLabel) {
+        this.configuration.put(ConfigKey.UPPERCASE_LABEL, uppercaseLabel);
+        setMarkerText();
+        return this;
+    }
+
     public PrettyMarker level(Level level) {
         this.configuration.put(ConfigKey.LOG_LEVEL, level);
         return this;
@@ -138,7 +147,7 @@ public abstract class PrettyMarker {
         COLOR,
         LOG_LEVEL,
         SYMBOL,
-        LABEL
+        LABEL,
+        UPPERCASE_LABEL
     }
-
 }
