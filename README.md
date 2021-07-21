@@ -94,7 +94,7 @@ This is a sample logback configuration file that was used to display the above c
 </configuration>
 ```
 
-The `pattern` must contain the `%masker` keyword, otherwise no `label` or `symbol` will be displayed.
+**The `pattern` must contain the `%masker` keyword, otherwise no `label` or `symbol` will be displayed.**
 
 ## Log Level and Markers
 
@@ -103,7 +103,7 @@ PL4J uses the following mapping between the SLF4J log levels and the markers:
 | SLF4J Log Level  |  PL4J Marker|
 |---|---|
 | `debug`  |  `debug` |
-| `info`  | `awaiting, complete, info, note, pause, pending, santa, star, start, stop, success, skipping`  |
+| `info`  | `awaiting, complete, info, fav, note, pause, pending, santa, star, start, stop, success, skipping, time, timeEnd`  |
 |  `warn` | `warning`  |
 |  `error` |  `error, fatal` |
 
@@ -141,6 +141,7 @@ You can override both the `symbol` and the `label`. The following flags can also
 - `underline`
 - `showLabel`
 - `showSymbol`
+- `uppercaseLabel`
 
 The flags can be configured both individually, for each marker:
 
@@ -153,7 +154,7 @@ public class TestClass {
 
     public static void main(String... args) {
         PrettyLogger prettyLogger = PrettyLoggerFactory.getLogger(TestClass.class);
-        PrettyMarker config = ConfigFactory.error().bold(false).underline(true).showLabel(true).showSymbol(true);
+        PrettyMarker config = ConfigFactory.error().bold(false).underline(true).showLabel(true).showSymbol(true).uppercaseLabel(true);
         prettyLogger.log(config, "this is an error");//note that we use log() instead of error()
     }
 }
@@ -171,6 +172,7 @@ classpath. The following properties can be used to change the flag values (all `
 - `pl4j.bold`
 - `pl4j.underline`
 - `pl4j.theme`
+- `pl4j.uppercase-label`
 
 ### Default values
 
@@ -181,6 +183,7 @@ If no global or individual configuration is supplied the default values are as f
 - `showLabel = true`
 - `showSymbol = true`
 - `theme = default`
+- `uppercaseLabel = false`
 
 ## Themes
 
