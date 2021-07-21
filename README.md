@@ -215,10 +215,22 @@ public class TestClass {
         PrettyLogger prettyLogger = PrettyLoggerFactory.getLogger(TestClass.class);
         prettyLogger.time("job1");
         // stuff happening
+        prettyLogger.time("job1");
+        //other stuff happening
         prettyLogger.timeEnd("job1");
     }
 }
 ```
+
+If you call the `time()` method multiple times using the same timer key, `pl4j` will display interim timers between the starting time, and the moment you call the method again. 
+The above program will print something like:
+
+```bash
+👍 job1      Timer starting...
+✋ job1      Interim timer run for: 2004ms
+✋ job1      Timer run for: 4506ms
+```
+
 # Projects using PL4J
 * [CATS](https://github.com/Endava/cats)
 

@@ -16,6 +16,7 @@ import java.util.Map;
 public class PrettyLogger {
 
     private static final String INIT_TIMER = "Timer starting...";
+    private static final String INTERIM_TIMER = "Interim timer run for: {}ms";
     private static final String END_TIMER = "Timer run for: {}ms";
     private final Logger slf4jLogger;
     private final EnumMap<MarkerType, PrettyMarker> config;
@@ -247,12 +248,14 @@ public class PrettyLogger {
     }
 
     public void time(String timerKey) {
-        PrettyMarker timerMarker = ConfigFactory.start().label(timerKey);
-        MDC.put(timerKey, String.valueOf(System.currentTimeMillis()));
-        this.logInternal(timerMarker, INIT_TIMER);
+        if (MDC.get(timerKey) != null) {
+            interimTimer(timerKey, INTERIM_TIMER);
+        } else {
+            newTimer(timerKey);
+        }
     }
 
-    public void timeEnd(String timerKey) {
+    private void interimTimer(String timerKey, String label) {
         PrettyMarker timerMarker = ConfigFactory.stop().label(timerKey);
         final long endTime = System.currentTimeMillis();
         long startTime;
@@ -261,7 +264,17 @@ public class PrettyLogger {
         } catch (Exception e) {
             startTime = endTime;
         }
-        this.logInternal(timerMarker, END_TIMER, (endTime - startTime));
+        this.logInternal(timerMarker, label, (endTime - startTime));
+    }
+
+    private void newTimer(String timerKey) {
+        PrettyMarker timerMarker = ConfigFactory.start().label(timerKey);
+        MDC.put(timerKey, String.valueOf(System.currentTimeMillis()));
+        this.logInternal(timerMarker, INIT_TIMER);
+    }
+
+    public void timeEnd(String timerKey) {
+        this.interimTimer(timerKey, END_TIMER);
     }
 
     private void logInternal(PrettyMarker config, String message, Object... arguments) {

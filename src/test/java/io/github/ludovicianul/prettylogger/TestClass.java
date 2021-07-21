@@ -28,6 +28,8 @@ public class TestClass {
 
         prettyLogger.time("job1");
         Thread.sleep(2000);
+        prettyLogger.time("job1");
+        Thread.sleep(2500);
         prettyLogger.timeEnd("job1");
     }
 }
