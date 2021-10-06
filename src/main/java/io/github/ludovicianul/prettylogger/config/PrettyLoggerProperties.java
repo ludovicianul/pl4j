@@ -1,6 +1,5 @@
-package io.github.ludovicianul.prettylogger.config.level;
+package io.github.ludovicianul.prettylogger.config;
 
-import io.github.ludovicianul.prettylogger.config.MarkerType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +9,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
-enum PrettyLoggerProperties {
+public enum PrettyLoggerProperties {
     INSTANCE;
 
     private static final String showLabelKey = "pl4j.show-labels";
@@ -19,14 +18,19 @@ enum PrettyLoggerProperties {
     private static final String themeKey = "pl4j.theme";
     private static final String underlineKey = "pl4j.underline";
     private static final String uppercaseLabelKey = "pl4j.uppercase-label";
+    private static final String useMarkersKey = "pl4j.use-markers";
+    private static final String prefixFormatKey = "pl4j.prefix-format";
+
     private final Logger LOGGER = LoggerFactory.getLogger(PrettyLoggerProperties.class);
     private boolean showLabels = true;
     private boolean showSymbols = true;
     private boolean bold = true;
     private boolean underline;
     private boolean uppercaseLabel;
+    private boolean useMarkers;
     private String theme = "default";
     private Properties themeProperties;
+    private String prefixFormat;
 
     PrettyLoggerProperties() {
         try (InputStream prettyConfig = getClass().getClassLoader().getResourceAsStream("pl4j.properties")) {
@@ -49,7 +53,9 @@ enum PrettyLoggerProperties {
         bold = Boolean.parseBoolean(properties.getProperty(boldKey, "true"));
         underline = Boolean.parseBoolean(properties.getProperty(underlineKey, "false"));
         uppercaseLabel = Boolean.parseBoolean(properties.getProperty(uppercaseLabelKey, "false"));
+        useMarkers = Boolean.parseBoolean(properties.getProperty(useMarkersKey, "true"));
         theme = properties.getProperty(themeKey, "default");
+        prefixFormat = properties.getProperty(prefixFormatKey, "%1$-29s");
     }
 
     private void loadTheme() {
@@ -120,5 +126,13 @@ enum PrettyLoggerProperties {
 
     public boolean isUppercaseLabel() {
         return uppercaseLabel;
+    }
+
+    public boolean isUseMarkers() {
+        return useMarkers;
+    }
+
+    public String getPrefixFormat() {
+        return this.prefixFormat;
     }
 }

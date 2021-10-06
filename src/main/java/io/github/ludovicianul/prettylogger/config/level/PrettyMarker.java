@@ -1,6 +1,7 @@
 package io.github.ludovicianul.prettylogger.config.level;
 
 import io.github.ludovicianul.prettylogger.config.MarkerType;
+import io.github.ludovicianul.prettylogger.config.PrettyLoggerProperties;
 import java.util.Locale;
 import org.fusesource.jansi.Ansi;
 import org.slf4j.Marker;
@@ -53,8 +54,12 @@ public abstract class PrettyMarker {
     }
 
     private String getLabel() {
-        String initialText = isTrue(ConfigKey.SHOW_LABEL) ? this.getBolded(this.getUnderlined(this.getProperty(ConfigKey.LABEL))) : "";
-        return isTrue(ConfigKey.UPPERCASE_LABEL) ? initialText.toUpperCase(Locale.ROOT) : initialText;
+        String initialText = isTrue(ConfigKey.SHOW_LABEL) ? this.getBolded(this.getUpperCase(this.getProperty(ConfigKey.LABEL))) : "";
+        return this.getUnderlined(initialText);
+    }
+
+    private String getUpperCase(String text) {
+        return isTrue(ConfigKey.UPPERCASE_LABEL) ? text.toUpperCase(Locale.ROOT) : text;
     }
 
     private String getBolded(String text) {

@@ -12,11 +12,10 @@
 
 # Description
 
-`Pretty Logger for Java` is a [slf4j](http://www.slf4j.org/) decorator that enables pretty printing on the console
+`Pretty Logger for Java` is a [slf4j](http://www.slf4j.org/) decorator that enables pretty printing
 using [ANSI formatting](https://en.wikipedia.org/wiki/ANSI_escape_code)
-through [jansi](http://fusesource.github.io/jansi/). PL4J is built around the concept
-of [Markers](http://www.slf4j.org/faq.html#marker_interface). This means that you must use an 
-implementation that supports Markers such as [logback](http://logback.qos.ch/) or [lof4j2](https://logging.apache.org/log4j/2.x/).
+through [jansi](http://fusesource.github.io/jansi/). PL4J can be used either through
+of [Markers](http://www.slf4j.org/faq.html#marker_interface) or simply prefixing the log messages.
 
 Table of Contents
 =================
@@ -24,6 +23,7 @@ Table of Contents
 * [Description](#description)
 * [Usage](#usage)
 * [Configuration](#configuration)
+    * [Marker vs Prefix](#marker-vs-prefix)
     * [Log Pattern](#log-pattern)
     * [Log Level and Markers](#log-level-and-markers)
     * [Markers Configuration](#markers-configuration)
@@ -74,9 +74,18 @@ Add it as a Maven dependency in your `pom.xml` file:
 
 # Configuration
 
+## Marker vs Prefix
+PL4J can be used either through Markers or as simple prefix for the messages. 
+Depending on your logging implementation you can choose one or the other. 
+This can be configured through the `pl4j.use-markers` property. Default value is `true`.
+
+The way you set this property will influence how the log patterns should be defined:
+- when using Markers, make sure the log pattern also includes the `%marker` 
+- when not using Markers, it's enough to just include the `%msg`
+
 ## Log Pattern
 
-This is a sample logback configuration file that was used to display the above console output:
+This is a sample logback configuration file that was used to display the above console output when using Markers (i.e. `pl4j.use-markers = true`):
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -94,7 +103,33 @@ This is a sample logback configuration file that was used to display the above c
 </configuration>
 ```
 
-**The `pattern` must contain the `%masker` keyword, otherwise no `label` or `symbol` will be displayed.**
+If you want to achieve the same thing using prefixes, you need to set the following properties in the `pl4j.properties`:
+
+````properties
+pl4j.use-markers=false
+pl4j.prefix-format=%1$-29s
+````
+
+And the log pattern will need to remove the `%marker`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <withJansi>true</withJansi>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="trace">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
+```
+
+The next sections will use the name Markers generically, as a way to identify both the Markers and prefixes cases.
+You can get back to this section and the [Marker vs Prefix](#marker-vs-prefix) section to see how you can configure any of them.
 
 ## Log Level and Markers
 
@@ -173,6 +208,8 @@ classpath. The following properties can be used to change the flag values (all `
 - `pl4j.underline`
 - `pl4j.theme`
 - `pl4j.uppercase-label`
+- `pl4j.use-markers`
+- `pl4j.prefix-format`
 
 ### Default values
 
@@ -184,6 +221,8 @@ If no global or individual configuration is supplied the default values are as f
 - `showSymbol = true`
 - `theme = default`
 - `uppercaseLabel = false`
+- `use-markers = true`
+- `prefix-format = %1$-29s`
 
 ## Themes
 

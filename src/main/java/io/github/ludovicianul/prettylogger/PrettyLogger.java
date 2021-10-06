@@ -1,6 +1,8 @@
 package io.github.ludovicianul.prettylogger;
 
+import com.sun.tools.javac.util.StringUtils;
 import io.github.ludovicianul.prettylogger.config.MarkerType;
+import io.github.ludovicianul.prettylogger.config.PrettyLoggerProperties;
 import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
 import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import org.slf4j.Logger;
@@ -8,6 +10,8 @@ import org.slf4j.MDC;
 
 import java.util.EnumMap;
 import java.util.Map;
+import org.slf4j.Marker;
+import org.slf4j.event.Level;
 
 /**
  * Decorator for the {@code Logger} class that offers additional methods for pretty printing
@@ -278,22 +282,45 @@ public class PrettyLogger {
     }
 
     private void logInternal(PrettyMarker config, String message, Object... arguments) {
-        switch (config.getLevel()) {
+        Marker marker = this.getMarker(config);
+        String finalMessage = this.getMessage(config.getMarker(), message);
+
+        this.logInternal(config.getLevel(), marker, finalMessage, arguments);
+    }
+
+    private void logInternal(Level level, Marker marker, String message, Object... arguments) {
+        switch (level) {
             case ERROR:
-                this.slf4jLogger.error(config.getMarker(), message, arguments);
+                this.slf4jLogger.error(marker, message, arguments);
                 break;
             case WARN:
-                this.slf4jLogger.warn(config.getMarker(), message, arguments);
+                this.slf4jLogger.warn(marker, message, arguments);
                 break;
             case INFO:
-                this.slf4jLogger.info(config.getMarker(), message, arguments);
+                this.slf4jLogger.info(marker, message, arguments);
                 break;
             case DEBUG:
-                this.slf4jLogger.debug(config.getMarker(), message, arguments);
+                this.slf4jLogger.debug(marker, message, arguments);
                 break;
             case TRACE:
-                this.slf4jLogger.trace(config.getMarker(), message, arguments);
+                this.slf4jLogger.trace(marker, message, arguments);
                 break;
+        }
+    }
+
+    private String getMessage(Marker marker, String message) {
+        if (PrettyLoggerProperties.INSTANCE.isUseMarkers()) {
+            return message;
+        } else {
+            return String.format(PrettyLoggerProperties.INSTANCE.getPrefixFormat(), marker.getName()) + message;
+        }
+    }
+
+    private Marker getMarker(PrettyMarker config) {
+        if (PrettyLoggerProperties.INSTANCE.isUseMarkers()) {
+            return config.getMarker();
+        } else {
+            return null;
         }
     }
 }
