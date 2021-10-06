@@ -15,7 +15,7 @@
 `Pretty Logger for Java` is a [slf4j](http://www.slf4j.org/) decorator that enables pretty printing
 using [ANSI formatting](https://en.wikipedia.org/wiki/ANSI_escape_code)
 through [jansi](http://fusesource.github.io/jansi/). PL4J can be used either through
-of [Markers](http://www.slf4j.org/faq.html#marker_interface) or simply prefixing the log messages.
+[Markers](http://www.slf4j.org/faq.html#marker_interface) or simply prefixing the log messages.
 
 Table of Contents
 =================

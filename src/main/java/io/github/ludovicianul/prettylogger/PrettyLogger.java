@@ -1,6 +1,5 @@
 package io.github.ludovicianul.prettylogger;
 
-import com.sun.tools.javac.util.StringUtils;
 import io.github.ludovicianul.prettylogger.config.MarkerType;
 import io.github.ludovicianul.prettylogger.config.PrettyLoggerProperties;
 import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
