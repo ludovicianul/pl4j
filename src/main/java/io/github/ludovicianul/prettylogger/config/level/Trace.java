@@ -3,14 +3,14 @@ package io.github.ludovicianul.prettylogger.config.level;
 import io.github.ludovicianul.prettylogger.config.MarkerType;
 import org.slf4j.event.Level;
 
+class Trace extends PrettyMarker {
 
-class Success extends PrettyMarker {
-
-  private Success() {
-    super(MarkerType.SUCCESS, Level.INFO);
+  private Trace() {
+    super(MarkerType.TRACE, Level.TRACE);
   }
 
-  static Success defaultConfig() {
-    return new Success();
+  static Trace defaultConfig() {
+    return new Trace();
   }
+
 }

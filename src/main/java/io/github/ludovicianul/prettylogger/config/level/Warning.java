@@ -4,11 +4,12 @@ import io.github.ludovicianul.prettylogger.config.MarkerType;
 import org.slf4j.event.Level;
 
 class Warning extends PrettyMarker {
-    private Warning() {
-        super(MarkerType.WARNING, Level.WARN);
-    }
 
-    static Warning defaultConfig() {
-        return new Warning();
-    }
+  private Warning() {
+    super(MarkerType.WARNING, Level.WARN);
+  }
+
+  static Warning defaultConfig() {
+    return new Warning();
+  }
 }

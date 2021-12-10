@@ -4,11 +4,12 @@ import io.github.ludovicianul.prettylogger.config.MarkerType;
 import org.slf4j.event.Level;
 
 class Error extends PrettyMarker {
-    private Error() {
-        super(MarkerType.ERROR, Level.ERROR);
-    }
 
-    static Error defaultConfig() {
-        return new Error();
-    }
+  private Error() {
+    super(MarkerType.ERROR, Level.ERROR);
+  }
+
+  static Error defaultConfig() {
+    return new Error();
+  }
 }

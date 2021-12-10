@@ -4,11 +4,12 @@ import io.github.ludovicianul.prettylogger.config.MarkerType;
 import org.slf4j.event.Level;
 
 class Complete extends PrettyMarker {
-    private Complete() {
-        super(MarkerType.COMPLETE, Level.INFO);
-    }
 
-    static Complete defaultConfig() {
-        return new Complete();
-    }
+  private Complete() {
+    super(MarkerType.COMPLETE, Level.INFO);
+  }
+
+  static Complete defaultConfig() {
+    return new Complete();
+  }
 }
