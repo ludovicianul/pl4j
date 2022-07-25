@@ -5,6 +5,7 @@ import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
 import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import java.util.EnumMap;
 import java.util.Map;
+import org.fusesource.jansi.Ansi;
 import org.slf4j.MDC;
 import org.slf4j.Marker;
 import org.slf4j.event.Level;
@@ -21,6 +22,8 @@ public abstract class PrettyLogger {
   protected final EnumMap<MarkerType, PrettyMarker> config;
 
   protected PrettyLogger() {
+    String ansiEnabled = System.getenv().get("NO_COLOR");
+    Ansi.setEnabled(ansiEnabled == null || ansiEnabled.trim().isEmpty());
     config = new EnumMap<>(MarkerType.class);
     config.put(MarkerType.AWAITING, ConfigFactory.awaiting());
     config.put(MarkerType.COMPLETE, ConfigFactory.complete());

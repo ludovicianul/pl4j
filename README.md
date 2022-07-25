@@ -273,6 +273,9 @@ The above program will print something like:
 ✋ job1      Timer run for: 4506ms
 ```
 
+## NO_COLOR
+If [NO_COLOR](https://no-color.org/) is set, then all **ANSI styling is disabled**.
+
 # Projects using PL4J
 * [CATS](https://github.com/Endava/cats)
 
