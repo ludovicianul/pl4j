@@ -4,7 +4,7 @@
 
     <groupId>io.github.ludovicianul</groupId>
     <artifactId>pretty-logger</artifactId>
-    <version>1.11-SNAPSHOT</version>
+    <version>1.11</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -43,7 +43,7 @@
         <url>https://ludovicianul@github.com/ludovicianul/pl4j.git</url>
         <connection>scm:git:https://ludovicianul@github.com/ludovicianul/pl4j.git</connection>
         <developerConnection>scm:git:https://ludovicianul@github.com/ludovicianul/pl4j.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>pretty-logger-1.11</tag>
     </scm>
     <distributionManagement>
         <repository>
