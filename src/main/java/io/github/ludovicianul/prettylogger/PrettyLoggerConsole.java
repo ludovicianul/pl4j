@@ -1,14 +1,13 @@
 package io.github.ludovicianul.prettylogger;
 
-import io.github.ludovicianul.prettylogger.config.MarkerType;
 import io.github.ludovicianul.prettylogger.config.PrettyLoggerProperties;
 import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
+import io.github.ludovicianul.prettylogger.config.level.PrettyLevel;
 import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.slf4j.Marker;
-import org.slf4j.event.Level;
 
 class PrettyLoggerConsole extends PrettyLogger {
 
@@ -16,7 +15,7 @@ class PrettyLoggerConsole extends PrettyLogger {
     super();
   }
 
-  private PrettyLoggerConsole(Map<MarkerType, PrettyMarker> configMap) {
+  private PrettyLoggerConsole(Map<PrettyLevel, PrettyMarker> configMap) {
     this();
     config.putAll(configMap);
   }
@@ -25,14 +24,16 @@ class PrettyLoggerConsole extends PrettyLogger {
     return new PrettyLoggerConsole();
   }
 
-  static PrettyLogger get(Map<MarkerType, PrettyMarker> configMap) {
+  static PrettyLogger get(Map<PrettyLevel, PrettyMarker> configMap) {
     return new PrettyLoggerConsole(configMap);
   }
 
   private static String replaceBrackets(String message, Object... params) {
     for (Object obj : params) {
-      message = message.replaceFirst(Pattern.quote("{}"),
-          Matcher.quoteReplacement(String.valueOf(obj)));
+      message = message.replaceFirst(
+        Pattern.quote("{}"),
+        Matcher.quoteReplacement(String.valueOf(obj))
+      );
     }
 
     return message;
@@ -40,14 +41,16 @@ class PrettyLoggerConsole extends PrettyLogger {
 
   @Override
   public void noFormat(String message, Object... arguments) {
-    PrettyMarker loggerConfig = config.get(MarkerType.NONE);
+    PrettyMarker loggerConfig = config.get(PrettyLevel.NONE);
 
     this.logInternal(loggerConfig.getLevel(), null, message, arguments);
   }
 
   @Override
-  public void noFormat(Map<PrettyMarker.ConfigKey, Object> config, String message,
-      Object... arguments) {
+  public void noFormat(
+    Map<PrettyMarker.ConfigKey, Object> config, String message,
+    Object... arguments
+  ) {
     PrettyMarker loggerConfig = ConfigFactory.none().fromConfig(config);
 
     this.logInternal(loggerConfig.getLevel(), null, message, arguments);
@@ -56,7 +59,7 @@ class PrettyLoggerConsole extends PrettyLogger {
   @Override
   String getMessage(Marker marker, String message) {
     return String.format(PrettyLoggerProperties.INSTANCE.getPrefixFormat(), marker.getName())
-        + message;
+      + message;
   }
 
   @Override
@@ -64,9 +67,9 @@ class PrettyLoggerConsole extends PrettyLogger {
     return null;
   }
 
-  void logInternal(Level level, Marker marker, String message, Object... arguments) {
+  void logInternal(PrettyLevel level, Marker marker, String message, Object... arguments) {
     String result = replaceBrackets(message, arguments);
-    switch (level) {
+    switch (level.slf4JLevel()) {
       case ERROR:
         System.err.println(result);
         break;

@@ -1,6 +1,5 @@
 package io.github.ludovicianul.prettylogger.config.level;
 
-import io.github.ludovicianul.prettylogger.config.MarkerType;
 import io.github.ludovicianul.prettylogger.config.PrettyLoggerProperties;
 import java.util.HashMap;
 import java.util.Locale;
@@ -8,7 +7,6 @@ import java.util.Map;
 import org.fusesource.jansi.Ansi;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
-import org.slf4j.event.Level;
 
 /**
  * Please note that this class is mutable by design. You have the option to start with a base
@@ -19,18 +17,17 @@ public abstract class PrettyMarker {
   private final Map<ConfigKey, Object> configuration;
   private String markerText;
 
-  public PrettyMarker(MarkerType markerType, Level level) {
+  public PrettyMarker(PrettyLevel level) {
     configuration = new HashMap<>();
-    configuration.put(ConfigKey.LABEL, PrettyLoggerProperties.INSTANCE.getLabel(markerType));
-    configuration.put(ConfigKey.SYMBOL, PrettyLoggerProperties.INSTANCE.getSymbol(markerType));
-    configuration.put(ConfigKey.COLOR, getAnsiColor(markerType));
+    configuration.put(ConfigKey.LABEL, PrettyLoggerProperties.INSTANCE.getLabel(level));
+    configuration.put(ConfigKey.SYMBOL, PrettyLoggerProperties.INSTANCE.getSymbol(level));
+    configuration.put(ConfigKey.COLOR, getAnsiColor(level));
     configuration.put(ConfigKey.LOG_LEVEL, level);
     configuration.put(ConfigKey.SHOW_LABEL, PrettyLoggerProperties.INSTANCE.isShowLabels());
     configuration.put(ConfigKey.SHOW_SYMBOL, PrettyLoggerProperties.INSTANCE.isShowSymbols());
     configuration.put(ConfigKey.BOLD, PrettyLoggerProperties.INSTANCE.isBold());
     configuration.put(ConfigKey.UNDERLINE, PrettyLoggerProperties.INSTANCE.isUnderline());
-    configuration.put(ConfigKey.UPPERCASE_LABEL,
-        PrettyLoggerProperties.INSTANCE.isUppercaseLabel());
+    configuration.put(ConfigKey.UPPERCASE_LABEL, PrettyLoggerProperties.INSTANCE.isUppercaseLabel());
     setMarkerText();
   }
 
@@ -57,7 +54,7 @@ public abstract class PrettyMarker {
 
   private String getLabel() {
     String initialText = isTrue(ConfigKey.SHOW_LABEL) ? this.getBolded(
-        this.getUpperCase(this.getProperty(ConfigKey.LABEL))) : "";
+      this.getUpperCase(this.getProperty(ConfigKey.LABEL))) : "";
     return this.getUnderlined(initialText);
   }
 
@@ -71,12 +68,12 @@ public abstract class PrettyMarker {
 
   private String getUnderlined(String text) {
     return isTrue(ConfigKey.UNDERLINE) ? Ansi.ansi().a(Ansi.Attribute.UNDERLINE).a(text).toString()
-        : text;
+      : text;
   }
 
-  private Ansi.Color getAnsiColor(MarkerType markerType) {
+  private Ansi.Color getAnsiColor(PrettyLevel prettyLevel) {
     try {
-      return Ansi.Color.valueOf(PrettyLoggerProperties.INSTANCE.getColor(markerType).toUpperCase());
+      return Ansi.Color.valueOf(PrettyLoggerProperties.INSTANCE.getColor(prettyLevel).toUpperCase());
     } catch (Exception e) {
       return Ansi.Color.DEFAULT;
     }
@@ -135,13 +132,13 @@ public abstract class PrettyMarker {
     return this;
   }
 
-  public PrettyMarker level(Level level) {
+  public PrettyMarker level(PrettyLevel level) {
     this.configuration.put(ConfigKey.LOG_LEVEL, level);
     return this;
   }
 
-  public Level getLevel() {
-    return (Level) configuration.get(ConfigKey.LOG_LEVEL);
+  public PrettyLevel getLevel() {
+    return (PrettyLevel) configuration.get(ConfigKey.LOG_LEVEL);
   }
 
   public Marker getMarker() {

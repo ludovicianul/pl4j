@@ -1,5 +1,6 @@
 package io.github.ludovicianul.prettylogger.config;
 
+import io.github.ludovicianul.prettylogger.config.level.PrettyLevel;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -33,7 +34,7 @@ public enum PrettyLoggerProperties {
 
   PrettyLoggerProperties() {
     try (InputStream prettyConfig = Thread.currentThread().getContextClassLoader()
-        .getResourceAsStream("pl4j.properties")) {
+      .getResourceAsStream("pl4j.properties")) {
       if (prettyConfig != null) {
         loadProperties(prettyConfig);
       } else {
@@ -60,7 +61,7 @@ public enum PrettyLoggerProperties {
 
   private void loadTheme() {
     try (InputStream themeStream = getClass().getClassLoader()
-        .getResourceAsStream("pl4j-" + theme + ".theme")) {
+      .getResourceAsStream("pl4j-" + theme + ".theme")) {
       if (themeStream != null) {
         themeProperties = new Properties();
         themeProperties.load(new InputStreamReader(themeStream, StandardCharsets.UTF_8));
@@ -72,15 +73,15 @@ public enum PrettyLoggerProperties {
     }
   }
 
-  public String getSymbol(MarkerType level) {
+  public String getSymbol(PrettyLevel level) {
     return themeProperties.getProperty(level.name().toLowerCase() + ".symbol", "");
   }
 
-  public String getLabel(MarkerType level) {
+  public String getLabel(PrettyLevel level) {
     return themeProperties.getProperty(level.name().toLowerCase() + ".label", "");
   }
 
-  public String getColor(MarkerType level) {
+  public String getColor(PrettyLevel level) {
     return themeProperties.getProperty(level.name().toLowerCase() + ".color", "");
   }
 

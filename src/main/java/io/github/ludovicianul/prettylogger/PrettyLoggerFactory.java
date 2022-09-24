@@ -1,6 +1,6 @@
 package io.github.ludovicianul.prettylogger;
 
-import io.github.ludovicianul.prettylogger.config.MarkerType;
+import io.github.ludovicianul.prettylogger.config.level.PrettyLevel;
 import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class PrettyLoggerFactory {
    * @param configMap custom PrettyLogger configuration
    * @return a PrettyLogger instance
    */
-  public static PrettyLogger getConsoleLogger(Map<MarkerType, PrettyMarker> configMap) {
+  public static PrettyLogger getConsoleLogger(Map<PrettyLevel, PrettyMarker> configMap) {
     return PrettyLoggerConsole.get(configMap);
   }
 
@@ -46,7 +46,7 @@ public class PrettyLoggerFactory {
    *
    * @return a PrettyLogger instance
    */
-  public static PrettyLogger getLogger(Class<?> clazz, Map<MarkerType, PrettyMarker> configMap) {
+  public static PrettyLogger getLogger(Class<?> clazz, Map<PrettyLevel, PrettyMarker> configMap) {
     Logger slf4jLogger = LoggerFactory.getLogger(clazz);
     return PrettyLoggerSlf4j.fromSlf4j(slf4jLogger, configMap);
   }

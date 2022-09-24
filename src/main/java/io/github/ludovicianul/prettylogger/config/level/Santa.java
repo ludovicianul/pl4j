@@ -1,12 +1,9 @@
 package io.github.ludovicianul.prettylogger.config.level;
 
-import io.github.ludovicianul.prettylogger.config.MarkerType;
-import org.slf4j.event.Level;
-
 class Santa extends PrettyMarker {
 
   private Santa() {
-    super(MarkerType.SANTA, Level.INFO);
+    super(PrettyLevel.SANTA);
   }
 
   static Santa defaultConfig() {

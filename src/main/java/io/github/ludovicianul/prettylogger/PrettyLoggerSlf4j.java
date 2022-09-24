@@ -1,12 +1,11 @@
 package io.github.ludovicianul.prettylogger;
 
-import io.github.ludovicianul.prettylogger.config.MarkerType;
 import io.github.ludovicianul.prettylogger.config.PrettyLoggerProperties;
+import io.github.ludovicianul.prettylogger.config.level.PrettyLevel;
 import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
-import org.slf4j.event.Level;
 
 class PrettyLoggerSlf4j extends PrettyLogger {
 
@@ -17,7 +16,7 @@ class PrettyLoggerSlf4j extends PrettyLogger {
     this.slf4jLogger = slf4jLogger;
   }
 
-  private PrettyLoggerSlf4j(Logger slf4jLogger, Map<MarkerType, PrettyMarker> configMap) {
+  private PrettyLoggerSlf4j(Logger slf4jLogger, Map<PrettyLevel, PrettyMarker> configMap) {
     this(slf4jLogger);
     config.putAll(configMap);
   }
@@ -26,7 +25,7 @@ class PrettyLoggerSlf4j extends PrettyLogger {
     return new PrettyLoggerSlf4j(slf4jLogger);
   }
 
-  static PrettyLogger fromSlf4j(Logger slf4jLogger, Map<MarkerType, PrettyMarker> configMap) {
+  static PrettyLogger fromSlf4j(Logger slf4jLogger, Map<PrettyLevel, PrettyMarker> configMap) {
     return new PrettyLoggerSlf4j(slf4jLogger, configMap);
   }
 
@@ -43,12 +42,12 @@ class PrettyLoggerSlf4j extends PrettyLogger {
       return message;
     } else {
       return String.format(PrettyLoggerProperties.INSTANCE.getPrefixFormat(), marker.getName())
-          + message;
+        + message;
     }
   }
 
-  void logInternal(Level level, Marker marker, String message, Object... arguments) {
-    switch (level) {
+  void logInternal(PrettyLevel level, Marker marker, String message, Object... arguments) {
+    switch (level.slf4JLevel()) {
       case ERROR:
         this.slf4jLogger.error(marker, message, arguments);
         break;

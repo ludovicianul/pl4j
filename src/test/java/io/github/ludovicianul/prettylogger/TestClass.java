@@ -1,5 +1,6 @@
 package io.github.ludovicianul.prettylogger;
 
+import io.github.ludovicianul.prettylogger.config.level.PrettyLevel;
 import org.junit.jupiter.api.Test;
 
 class TestClass {
@@ -7,7 +8,7 @@ class TestClass {
   @Test
   void testDisplay() throws Exception {
     PrettyLogger prettyLogger = PrettyLoggerFactory.getLogger(TestClass.class);
-
+    PrettyLogger.disableLevels(PrettyLevel.ERROR, PrettyLevel.FAV, PrettyLevel.PENDING);
     doLogging(prettyLogger);
   }
 
@@ -45,6 +46,5 @@ class TestClass {
     Thread.sleep(2500);
     prettyLogger.timeEnd("job1");
   }
-
 
 }
