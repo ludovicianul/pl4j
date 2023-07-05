@@ -12,7 +12,7 @@ import org.slf4j.MarkerFactory;
  * Please note that this class is mutable by design. You have the option to start with a base
  * configuration provided by the pre-defined classes
  */
-public abstract class PrettyMarker {
+public class PrettyMarker {
 
   private final Map<ConfigKey, Object> configuration;
   private String markerText;

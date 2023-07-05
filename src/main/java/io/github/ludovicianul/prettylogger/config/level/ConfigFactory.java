@@ -7,79 +7,79 @@ public class ConfigFactory {
   }
 
   public static PrettyMarker success() {
-    return Success.defaultConfig();
+    return new PrettyMarker(PrettyLevel.SUCCESS);
   }
 
   public static PrettyMarker awaiting() {
-    return Awaiting.defaultConfig();
+    return new PrettyMarker(PrettyLevel.AWAITING);
   }
 
   public static PrettyMarker complete() {
-    return Complete.defaultConfig();
+    return new PrettyMarker(PrettyLevel.COMPLETE);
   }
 
   public static PrettyMarker debug() {
-    return Debug.defaultConfig();
+    return new PrettyMarker(PrettyLevel.DEBUG);
   }
 
   public static PrettyMarker error() {
-    return Error.defaultConfig();
+    return new PrettyMarker(PrettyLevel.ERROR);
   }
 
   public static PrettyMarker fatal() {
-    return Fatal.defaultConfig();
+    return new PrettyMarker(PrettyLevel.FATAL);
   }
 
   public static PrettyMarker fav() {
-    return Fav.defaultConfig();
+    return new PrettyMarker(PrettyLevel.FAV);
   }
 
   public static PrettyMarker info() {
-    return Info.defaultConfig();
+    return new PrettyMarker(PrettyLevel.INFO);
   }
 
   public static PrettyMarker note() {
-    return Note.defaultConfig();
+    return new PrettyMarker(PrettyLevel.NOTE);
   }
 
   public static PrettyMarker pause() {
-    return Pause.defaultConfig();
+    return new PrettyMarker(PrettyLevel.PAUSE);
   }
 
   public static PrettyMarker pending() {
-    return Pending.defaultConfig();
+    return new PrettyMarker(PrettyLevel.PENDING);
   }
 
   public static PrettyMarker santa() {
-    return Santa.defaultConfig();
+    return new PrettyMarker(PrettyLevel.SANTA);
   }
 
   public static PrettyMarker star() {
-    return Star.defaultConfig();
+    return new PrettyMarker(PrettyLevel.STAR);
   }
 
   public static PrettyMarker start() {
-    return Start.defaultConfig();
+    return new PrettyMarker(PrettyLevel.START);
   }
 
   public static PrettyMarker stop() {
-    return Stop.defaultConfig();
+    return new PrettyMarker(PrettyLevel.STOP);
   }
 
   public static PrettyMarker warning() {
-    return Warning.defaultConfig();
+    return new PrettyMarker(PrettyLevel.WARNING);
   }
 
   public static PrettyMarker skip() {
-    return Skip.defaultConfig();
+    return new PrettyMarker(PrettyLevel.SKIP);
   }
 
   public static PrettyMarker none() {
-    return None.defaultConfig();
+    return new PrettyMarker(PrettyLevel.NONE);
   }
 
   public static PrettyMarker trace() {
-    return Trace.defaultConfig();
+    return new PrettyMarker(PrettyLevel.TRACE);
   }
 
 }
