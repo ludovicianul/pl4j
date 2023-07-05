@@ -302,13 +302,17 @@ public abstract class PrettyLogger {
   }
 
   public static void enableLevels(PrettyLevel... levels) {
-    Arrays.stream(PrettyLevel.values()).forEach(level -> LEVELS_MAP.put(level.name(), false));
-    Arrays.stream(levels).forEach(level -> LEVELS_MAP.put(level.name(), true));
+    if (levels != null && levels.length > 0) {
+      Arrays.stream(PrettyLevel.values()).forEach(level -> LEVELS_MAP.put(level.name(), false));
+      Arrays.stream(levels).forEach(level -> LEVELS_MAP.put(level.name(), true));
+    }
   }
 
   public static void disableLevels(PrettyLevel... levels) {
-    Arrays.stream(PrettyLevel.values()).forEach(level -> LEVELS_MAP.put(level.name(), true));
-    Arrays.stream(levels).forEach(level -> LEVELS_MAP.put(level.name(), false));
+    if (levels != null && levels.length > 0) {
+      Arrays.stream(PrettyLevel.values()).forEach(level -> LEVELS_MAP.put(level.name(), true));
+      Arrays.stream(levels).forEach(level -> LEVELS_MAP.put(level.name(), false));
+    }
   }
 
   abstract String getMessage(Marker marker, String message);
