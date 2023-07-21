@@ -3,6 +3,8 @@ package io.github.ludovicianul.prettylogger.config.level;
 import org.slf4j.event.Level;
 
 public enum PrettyLevel {
+  TIMER(214, Level.INFO),
+  CONFIG(213, Level.INFO),
   AWAITING(212, Level.INFO),
   COMPLETE(211, Level.INFO),
   DEBUG(101, Level.DEBUG),

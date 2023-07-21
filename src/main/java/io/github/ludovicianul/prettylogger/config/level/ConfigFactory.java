@@ -82,4 +82,8 @@ public class ConfigFactory {
     return new PrettyMarker(PrettyLevel.TRACE);
   }
 
+  public static PrettyMarker config() {return new PrettyMarker(PrettyLevel.CONFIG);}
+
+  public static PrettyMarker timer() {return new PrettyMarker(PrettyLevel.TIMER);}
+
 }

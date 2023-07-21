@@ -38,6 +38,8 @@ class TestClass {
     prettyLogger.skip("skip string");
     prettyLogger.pending("connect to url");
     prettyLogger.trace("tracing this");
+    prettyLogger.config("configuring stuff!");
+
     prettyLogger.noFormat("no label");
 
     prettyLogger.time("job1");

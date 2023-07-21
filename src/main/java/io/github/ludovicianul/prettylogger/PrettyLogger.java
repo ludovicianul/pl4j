@@ -31,6 +31,8 @@ public abstract class PrettyLogger {
     String ansiEnabled = System.getenv().get("NO_COLOR");
     Ansi.setEnabled(ansiEnabled == null || ansiEnabled.trim().isEmpty());
     config = new EnumMap<>(PrettyLevel.class);
+    config.put(PrettyLevel.TIMER, ConfigFactory.timer());
+    config.put(PrettyLevel.CONFIG, ConfigFactory.config());
     config.put(PrettyLevel.AWAITING, ConfigFactory.awaiting());
     config.put(PrettyLevel.COMPLETE, ConfigFactory.complete());
     config.put(PrettyLevel.DEBUG, ConfigFactory.debug());
@@ -79,6 +81,26 @@ public abstract class PrettyLogger {
 
   public void awaiting(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
     PrettyMarker loggerConfig = ConfigFactory.awaiting().fromConfig(config);
+    this.logInternal(loggerConfig, message, arguments);
+  }
+
+  public void config(String message, Object... arguments) {
+    PrettyMarker loggerConfig = config.get(PrettyLevel.CONFIG);
+    this.logInternal(loggerConfig, message, arguments);
+  }
+
+  public void timer(String message, Object... arguments) {
+    PrettyMarker loggerConfig = config.get(PrettyLevel.TIMER);
+    this.logInternal(loggerConfig, message, arguments);
+  }
+
+  public void timer(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+    PrettyMarker loggerConfig = ConfigFactory.timer().fromConfig(config);
+    this.logInternal(loggerConfig, message, arguments);
+  }
+
+  public void config(Map<PrettyMarker.ConfigKey, Object> config, String message, Object... arguments) {
+    PrettyMarker loggerConfig = ConfigFactory.config().fromConfig(config);
     this.logInternal(loggerConfig, message, arguments);
   }
 

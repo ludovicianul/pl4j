@@ -1,3 +1,9 @@
+timer.symbol=🫡
+timer.label=time
+timer.color=green
+config.symbol=🤔
+config.label=config
+config.color=gray
 awaiting.symbol=🥱
 awaiting.label=awaiting
 awaiting.color=blue
