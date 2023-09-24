@@ -85,6 +85,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
     <scm>
         <url>https://ludovicianul@github.com/ludovicianul/pl4j.git</url>
         <connection>scm:git:https://ludovicianul@github.com/ludovicianul/pl4j.git</connection>
