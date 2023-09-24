@@ -48,21 +48,11 @@ class PrettyLoggerSlf4j extends PrettyLogger {
 
   void logInternal(PrettyLevel level, Marker marker, String message, Object... arguments) {
     switch (level.slf4JLevel()) {
-      case ERROR:
-        this.slf4jLogger.error(marker, message, arguments);
-        break;
-      case WARN:
-        this.slf4jLogger.warn(marker, message, arguments);
-        break;
-      case INFO:
-        this.slf4jLogger.info(marker, message, arguments);
-        break;
-      case DEBUG:
-        this.slf4jLogger.debug(marker, message, arguments);
-        break;
-      case TRACE:
-        this.slf4jLogger.trace(marker, message, arguments);
-        break;
+      case ERROR -> this.slf4jLogger.error(marker, message, arguments);
+      case WARN -> this.slf4jLogger.warn(marker, message, arguments);
+      case INFO -> this.slf4jLogger.info(marker, message, arguments);
+      case DEBUG -> this.slf4jLogger.debug(marker, message, arguments);
+      case TRACE -> this.slf4jLogger.trace(marker, message, arguments);
     }
   }
 }

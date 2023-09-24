@@ -70,15 +70,8 @@ class PrettyLoggerConsole extends PrettyLogger {
   void logInternal(PrettyLevel level, Marker marker, String message, Object... arguments) {
     String result = replaceBrackets(message, arguments);
     switch (level.slf4JLevel()) {
-      case ERROR:
-        System.err.println(result);
-        break;
-      case WARN:
-      case INFO:
-      case DEBUG:
-      case TRACE:
-        System.out.println(result);
-        break;
+      case ERROR -> System.err.println(result);
+      case WARN, INFO, DEBUG, TRACE -> System.out.println(result);
     }
   }
 }
