@@ -1,5 +1,6 @@
 package io.github.ludovicianul.prettylogger;
 
+import io.github.ludovicianul.prettylogger.config.PrettyLoggerProperties;
 import io.github.ludovicianul.prettylogger.config.level.ConfigFactory;
 import io.github.ludovicianul.prettylogger.config.level.PrettyLevel;
 import io.github.ludovicianul.prettylogger.config.level.PrettyMarker;
@@ -22,6 +23,7 @@ public abstract class PrettyLogger {
   private static final String END_TIMER = "Timer run for: {}ms";
   protected final EnumMap<PrettyLevel, PrettyMarker> config;
   static final Map<String, Boolean> LEVELS_MAP = new HashMap<>();
+  static boolean color = true;
 
   static {
     Arrays.stream(PrettyLevel.values()).forEach(prettyLevel -> LEVELS_MAP.put(prettyLevel.name(), true));
@@ -29,7 +31,7 @@ public abstract class PrettyLogger {
 
   protected PrettyLogger() {
     String ansiEnabled = System.getenv().get("NO_COLOR");
-    Ansi.setEnabled(ansiEnabled == null || ansiEnabled.trim().isEmpty());
+    Ansi.setEnabled((ansiEnabled == null || ansiEnabled.trim().isEmpty()) && color);
     config = new EnumMap<>(PrettyLevel.class);
     config.put(PrettyLevel.TIMER, ConfigFactory.timer());
     config.put(PrettyLevel.CONFIG, ConfigFactory.config());
@@ -335,6 +337,18 @@ public abstract class PrettyLogger {
       Arrays.stream(PrettyLevel.values()).forEach(level -> LEVELS_MAP.put(level.name(), true));
       Arrays.stream(levels).forEach(level -> LEVELS_MAP.put(level.name(), false));
     }
+  }
+
+  public static void enableColors() {
+    color = true;
+  }
+
+  public static void disableColors() {
+    color = false;
+  }
+
+  public static void changeMessageFormat(String newFormat) {
+    PrettyLoggerProperties.INSTANCE.setPrefixFormat(newFormat);
   }
 
   abstract String getMessage(Marker marker, String message);

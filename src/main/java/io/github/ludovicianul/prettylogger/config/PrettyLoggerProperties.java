@@ -137,4 +137,8 @@ public enum PrettyLoggerProperties {
   public String getPrefixFormat() {
     return this.prefixFormat;
   }
+
+  public void setPrefixFormat(String newFormat) {
+    this.prefixFormat = newFormat;
+  }
 }
